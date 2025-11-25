@@ -1,0 +1,13 @@
+{
+  "name": "the-buggles-hbs",
+  "version": "1.0.0",
+  "description": "A Bootstrap + Handlebars website about The Buggles",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-handlebars": "^7.1.2"
+  }
+}
