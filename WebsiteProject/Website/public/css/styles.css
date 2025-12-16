@@ -6,6 +6,11 @@
   --wh-light: #e6e6e6;
 }
 
+.p-accent {
+  color: var(--wh-accent) !important;
+  text-shadow: 0 0 3px #000;
+}
+
 html, body {
   background-color: var(--wh-bg) !important;
   color: var(--wh-light) !important;

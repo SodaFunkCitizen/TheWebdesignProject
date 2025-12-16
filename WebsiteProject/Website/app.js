@@ -44,11 +44,18 @@ app.get('/', (req, res) => {
 // contact route
 app.get('/contact', (req, res) => {
     state={contact : true}
-    head={title:"Contact - Week 1"}
+    head={title:"Contact"}
     res.render('contact', { state, head});
     console.log('contact')
   });
 
+// about route
+app.get('/about', (req, res) => {
+    state={contact : true}
+    head={title:"About"}
+    res.render('about', { state, head});
+    console.log('about')
+  });
 // albums 
 app.get('/shop', (req, res) => {
     state={home:false ,shop:true}
