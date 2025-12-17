@@ -1,5 +1,3 @@
-console.log("cart.js loaded");
-
 const CART_KEY = "cart";
 
 function getCart() {
@@ -14,35 +12,67 @@ function saveCart(cart) {
 function updateCartCount() {
   const el = document.getElementById("cart-count");
   if (!el) return;
-
-  const cart = getCart();
-  el.textContent = cart.reduce((sum, i) => sum + i.quantity, 0);
+  el.textContent = getCart().reduce((sum, i) => sum + i.qty, 0);
 }
 
 function addToCart(product) {
   const cart = getCart();
-  const existing = cart.find(i => i.id === product.id);
+  const item = cart.find(i => i.id === product.id);
 
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
+  if (item) item.qty++;
+  else cart.push({ ...product, qty: 1 });
 
   saveCart(cart);
-  alert(`${product.name} added to cart`);
+}
+
+function removeFromCart(id) {
+  let cart = getCart();
+  cart = cart.filter(i => i.id !== id);
+  saveCart(cart);
+  renderCart();
+}
+
+function renderCart() {
+  const body = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+  if (!body) return;
+
+  const cart = getCart();
+  body.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+
+    body.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.qty}</td>
+        <td>$${(item.price * item.qty).toFixed(2)}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" onclick="removeFromCart(${item.id})">
+            Remove
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  totalEl.textContent = total.toFixed(2);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
+  renderCart();
 
   document.querySelectorAll(".add-to-cart").forEach(btn => {
     btn.addEventListener("click", () => {
       addToCart({
-        id: btn.dataset.id,
+        id: Number(btn.dataset.id),
         name: btn.dataset.name,
-        price: parseFloat(btn.dataset.price)
+        price: Number(btn.dataset.price)
       });
+      alert("Added to cart!");
     });
   });
 });
