@@ -67,11 +67,9 @@ function renderCart() {
 
   totalEl.textContent = total.toFixed(2);
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
   renderCart();
-
   document.querySelectorAll(".add-to-cart").forEach(btn => {
     btn.addEventListener("click", () => {
       addToCart({
