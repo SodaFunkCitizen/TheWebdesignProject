@@ -1,5 +1,6 @@
-const CART_KEY = "cart";
+console.log("cart.js loaded");//Little tester make sure cart was loading(It wasn't orginally)
 
+const CART_KEY = "cart";
 function getCart() {
   return JSON.parse(localStorage.getItem(CART_KEY)) || [];
 }
@@ -10,47 +11,53 @@ function saveCart(cart) {
 }
 
 function updateCartCount() {
-  const el = document.getElementById("cart-count");
-  if (!el) return;
-  el.textContent = getCart().reduce((sum, i) => sum + i.qty, 0);
+  const countEl = document.getElementById("cart-count");
+  if (!countEl) return;
+
+  const cart = getCart();
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  countEl.textContent = count;
 }
 
 function addToCart(product) {
   const cart = getCart();
-  const item = cart.find(i => i.id === product.id);
+  const existing = cart.find(i => i.id === product.id);
 
-  if (item) item.qty++;
-  else cart.push({ ...product, qty: 1 });
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
 
   saveCart(cart);
 }
 
 function removeFromCart(id) {
-  let cart = getCart();
-  cart = cart.filter(i => i.id !== id);
+  const cart = getCart().filter(i => i.id !== id);
   saveCart(cart);
   renderCart();
 }
 
 function renderCart() {
-  const body = document.getElementById("cart-items");
+  const tbody = document.getElementById("cart-items");
   const totalEl = document.getElementById("cart-total");
-  if (!body) return;
+  if (!tbody || !totalEl) return;
 
   const cart = getCart();
-  body.innerHTML = "";
+  tbody.innerHTML = "";
   let total = 0;
 
   cart.forEach(item => {
     total += item.price * item.qty;
 
-    body.innerHTML += `
+    tbody.innerHTML += `
       <tr>
         <td>${item.name}</td>
         <td>${item.qty}</td>
         <td>$${(item.price * item.qty).toFixed(2)}</td>
         <td>
-          <button class="btn btn-sm btn-danger" onclick="removeFromCart(${item.id})">
+          <button class="btn btn-danger btn-sm"
+            onclick="removeFromCart(${item.id})">
             Remove
           </button>
         </td>
@@ -72,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         name: btn.dataset.name,
         price: Number(btn.dataset.price)
       });
-      alert("Added to cart!");
+      alert("Added to cart");
     });
   });
 });

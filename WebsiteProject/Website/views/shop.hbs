@@ -1,24 +1,17 @@
 <main class="container py-5">
-  <h1 class="text-center mb-4">Shop</h1>
-
-  <div class="row g-4">
-    {{#each products}}
-    <div class="col-md-4">
-      <div class="card text-center h-100">
-        <img src="https://placehold.co/200x200" class="card-img-top">
-        <div class="card-body">
-          <h5>{{name}}</h5>
-          <p>${{price}}</p>
-          <button
-            class="btn btn-primary add-to-cart"
-            data-id="{{id}}"
-            data-name="{{name}}"
-            data-price="{{price}}">
-            Add to Cart
-          </button>
+    <h1 class="text-center mb-4">Shop</h1>
+    <div class="row g-4">
+        {{#each products}}
+        <div class="col-md-4">
+            <div class="card text-center h-100">
+                <img src="https://placehold.co/200x200" class="card-img-top">
+                <div class="card-body">
+                    <h5>{{name}}</h5>
+                    <p>${{price}}</p>
+                    <button class="btn btn-primary add-to-cart" data-id="{{id}}" data-name="{{name}}" data-price="{{price}}">Add to Cart </button>
+                </div>
+            </div>
         </div>
-      </div>
+        {{/each}}
     </div>
-    {{/each}}
-  </div>
 </main>
