@@ -34,6 +34,10 @@ app.get('/cart', (req, res) => {
   res.render('cart', { title: "Your Cart" });
 });
 
+app.get('/checkout', (req, res) => {
+  res.render('checkout', { title: "Checkout" });
+});
+
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
 });
