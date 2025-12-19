@@ -38,6 +38,11 @@ app.get('/checkout', (req, res) => {
   res.render('checkout', { title: "Checkout" });
 });
 
+app.get('/login', (req, res) => {
+  head = { title: "Login" };
+  res.render('login', { head });
+});
+
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');
 });
