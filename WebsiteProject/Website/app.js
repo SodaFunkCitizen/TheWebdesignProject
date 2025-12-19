@@ -34,10 +34,15 @@ app.get('/', (req, res) => {
 app.get('/shop', (req, res) => {
   res.render('shop', { title: "Shop", products });
 });
+
 app.get('/about', (req, res) => {
-    const state = { about: true };
     const head = { title: "About Us" };
-    res.render('about', { state, head });
+    res.render('about', { head });
+});
+
+app.get('/contact', (req, res) => {
+    const head = { title: "Contact" };
+    res.render('contact', {head });
 });
 
 app.get('/cart', (req, res) => {
