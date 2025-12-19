@@ -21,7 +21,7 @@ app.use(express.static('public'));
 const products = [
   { id: 1, name: "Skulls Boxset", price: 29.99 ,image: "/Images/skulls.jpg"},
   { id: 2, name: "Adeptus Pin", price: 19.99 ,image: "/Images/pin.jpg"},
-  { id: 3, name: "Guilliman", price: 39.99 ,image: "/Images/Ultrmare.jpg"},
+  { id: 3, name: "Guilliman", price: 39.99 ,image: "/Images/Ultrmare.png"},
   { id: 3, name: "ima", price: 69.99 ,image: "/images/Images.jpg"},
   { id: 3, name: "Killian Ashgate", price: 59.99 ,image: "/Images/KillianAshgate.jpg"},
   { id: 3, name: "Leviathan BoxSet", price: 109.99 ,image: "/Images/leviathan.jpg"},
