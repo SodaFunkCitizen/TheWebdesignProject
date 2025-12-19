@@ -16,10 +16,15 @@ app.set('view engine', 'hbs');
 app.set('views', 'views');
 app.use(express.static('public'));
 
+//Why code my products like this? Because it makes my website code more changable for
+//any e commerces website i could need to do in future
 const products = [
-  { id: 1, name: "Product 1", price: 29.99 },
-  { id: 2, name: "Product 2", price: 19.99 },
-  { id: 3, name: "Product 3", price: 39.99 },
+  { id: 1, name: "Skulls Boxset", price: 29.99 ,image: "/Images/skulls.jpg"},
+  { id: 2, name: "Adeptus Pin", price: 19.99 ,image: "/Images/pin.jpg"},
+  { id: 3, name: "Guilliman", price: 39.99 ,image: "/Images/Ultrmare.jpg"},
+  { id: 3, name: "ima", price: 69.99 ,image: "/images/Images.jpg"},
+  { id: 3, name: "Killian Ashgate", price: 59.99 ,image: "/Images/KillianAshgate.jpg"},
+  { id: 3, name: "Leviathan BoxSet", price: 109.99 ,image: "/Images/leviathan.jpg"},
 ];
 
 app.get('/', (req, res) => {
@@ -28,6 +33,11 @@ app.get('/', (req, res) => {
 
 app.get('/shop', (req, res) => {
   res.render('shop', { title: "Shop", products });
+});
+app.get('/about', (req, res) => {
+    const state = { about: true };
+    const head = { title: "About Us" };
+    res.render('about', { state, head });
 });
 
 app.get('/cart', (req, res) => {
